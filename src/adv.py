@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -33,11 +34,16 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+print(room['treasure'].s_to)
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+# player1 = Player('Jack', 'outside')
+
+# print(player1)
 
 # Write a loop that:
 #
@@ -49,3 +55,12 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+game = True
+while game == True:
+    player1 = input("What is your name?")
+    player = Player(player1, 'outside')
+    print(f"Welcome, {player1}. You have stumbled into this RPG and must now find the treasure. You are currently outside.")
+    user_input = input('Which way will you go? [n] [s] [w] [e]')
+    if user_input == 'q':
+        game = False
