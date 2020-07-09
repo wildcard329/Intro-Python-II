@@ -34,16 +34,11 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-print(room['treasure'].s_to)
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-# player1 = Player('Jack', 'outside')
-
-# print(player1)
 
 # Write a loop that:
 #
@@ -58,9 +53,26 @@ print(room['treasure'].s_to)
 
 game = True
 while game == True:
-    player1 = input("What is your name?")
-    player = Player(player1, 'outside')
-    print(f"Welcome, {player1}. You have stumbled into this RPG and must now find the treasure. You are currently outside.")
-    user_input = input('Which way will you go? [n] [s] [w] [e]')
-    if user_input == 'q':
-        game = False
+    player1 = input("Welcome player, what is your name? ")
+    player = Player(player1, room['outside'])
+    print(f"Welcome, {player1}. You have stumbled into this RPG and must now find the treasure. You are currently in {player.current_room}.")
+    print(player)
+    choice = True
+    while choice == True:
+        user_input = input('Which way will you go? [n] [s] [w] [e] or [q] to quit ')
+        user_commands = ['n', 's', 'e', 'w']
+        if user_input == 'q':
+            choice = False
+            game = False
+        elif user_input in user_commands:
+            player.move(player.current_room, user_input)
+        # elif user_input == 'n':
+        #     player.move(player.current_room, 'n')
+        # elif user_input == 's':
+        #     player.move(player.current_room, 's')
+        # elif user_input == 'w':
+        #     player.move(player.current_room, 'w')
+        # elif user_input == 'e':
+        #     player.move(player.current_room, 'e')
+        else:
+            print('Please select a valid option')
